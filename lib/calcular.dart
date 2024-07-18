@@ -5,12 +5,14 @@ class Calculadora extends StatefulWidget {
 
   //Polimorfismo (override), você reescreve um método do pai(mae) ou ja existente.
   @override
-  State createState() =>  CalculadoraState();
+  State createState() {
+    return _CalculadoraState();
+  }
   }
  
 
 //é uma classe filha da classe calculadora e extende e herda ela ( extends State<Calculadora>)
-class CalculadoraState extends State<Calculadora>{
+class _CalculadoraState extends State<Calculadora>{
   @override
   Widget build(BuildContext context) {
     //Scaffold é uma nova estrutura , novo esqueleto contendo AppBar,
@@ -67,6 +69,13 @@ class CalculadoraState extends State<Calculadora>{
                 child: const Text(
                   "+"
                 ),
+              ),
+               MaterialButton(
+                color: Colors.blueGrey,
+                onPressed: subtrair ,
+                child: const Text(
+                  "-"
+                ),
               )
              ],
           )
@@ -76,9 +85,9 @@ class CalculadoraState extends State<Calculadora>{
    );
   } // Fecha o widget(metodo) build
   //Atributos
-  var num1 =0 ;
-  var num2 = 0;
-  var resultado = 0;
+  num num1 =0 ;
+  num num2 =0;
+  num resultado = 0;
   
   TextEditingController t1 = TextEditingController(text:"");
   TextEditingController t2 = TextEditingController(text:"");
@@ -89,9 +98,17 @@ class CalculadoraState extends State<Calculadora>{
   //Métodos
   void somar (){
     setState(() {
-      num1 = int.parse(t1.text);
-      num2 = int.parse(t2.text);
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
       resultado = num1 + num2;
+    });
+  }
+
+  void subtrair(){
+    setState(() {
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
+      resultado = num1 - num2;
     });
   }
 
