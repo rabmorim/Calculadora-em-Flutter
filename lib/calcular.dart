@@ -44,12 +44,14 @@ class _CalculadoraState extends State<Calculadora>{
             padding: 
             EdgeInsets.only(bottom: 20)),
 
+          //Entrada de valores.
           TextField(
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(hintText: "Informe o valor 1") ,
             controller: t1,
           ),
 
+          //Entrada de valores.
           TextField(
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(hintText: "Informe o valor 2") ,
@@ -61,7 +63,7 @@ class _CalculadoraState extends State<Calculadora>{
           ),
 
           Row(
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: <Widget>[
               MaterialButton(
                 color: Colors.blueGrey,
@@ -76,6 +78,27 @@ class _CalculadoraState extends State<Calculadora>{
                 child: const Text(
                   "-"
                 ),
+              ),
+                MaterialButton(
+                color: Colors.blueGrey,
+                onPressed: multiplicar ,
+                child: const Text(
+                  "*"
+                ),
+              ),
+                MaterialButton(
+                color: Colors.blueGrey,
+                onPressed: dividir ,
+                child: const Text(
+                  "/"
+                ),
+              ),
+                MaterialButton(
+                color: Colors.blueGrey,
+                onPressed: resto ,
+                child: const Text(
+                  "%"
+                ),
               )
              ],
           )
@@ -83,11 +106,13 @@ class _CalculadoraState extends State<Calculadora>{
       ) ,
     ) ,
    );
+  
   } // Fecha o widget(metodo) build
   //Atributos
+
   num num1 =0 ;
   num num2 =0;
-  num resultado = 0;
+  dynamic resultado = 0;
   
   TextEditingController t1 = TextEditingController(text:"");
   TextEditingController t2 = TextEditingController(text:"");
@@ -109,6 +134,38 @@ class _CalculadoraState extends State<Calculadora>{
       num1 = double.parse(t1.text);
       num2 = double.parse(t2.text);
       resultado = num1 - num2;
+    });
+  }
+
+    void multiplicar(){
+    setState(() {
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
+      resultado = num1 * num2;
+    });
+  }
+
+    void dividir(){
+    setState(() {
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
+      if(num2 == 0){
+        resultado = "Divisão invalida, divisão por 0 nao permitida";
+      } else{
+        resultado = num1 / num2;
+      }
+    });
+  }
+
+    void resto(){
+    setState(() {
+      num1 = double.parse(t1.text);
+      num2 = double.parse(t2.text);
+      if( num2 == 0){
+        resultado = "Operação inválida.";
+      } else{
+        resultado = num1 % num2;
+      }
     });
   }
 
