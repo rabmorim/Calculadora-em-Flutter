@@ -63,7 +63,7 @@ class _CalculadoraState extends State<Calculadora>{
           ),
 
           Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
              children: <Widget>[
               MaterialButton(
                 color: Colors.blueGrey,
